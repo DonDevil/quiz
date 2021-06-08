@@ -1,0 +1,408 @@
+Wm1:
+
+    W1:
+        name: 'screen1'
+
+    W2:
+        name: 'start'
+
+    W3:
+        name: 'mode'
+
+    W4:
+        name: 'gamesettings'
+
+    W5:
+        name: 'playersettings'
+
+    W6:
+        id: pre
+        name: 'playerstats'
+        on_pre_enter: pre.show_table()
+
+    W7:
+        name: 'login'
+
+<W1>
+
+    MDBoxLayout:
+
+        orientation: 'vertical'
+        adaptive_height: True
+
+        spacing: '20dp'
+        padding: '40dp'
+
+        pos_hint: {'top': 0.9}
+
+        MDRoundFlatButton:
+
+            text: "START"
+            font_size: 24
+            pos_hint: {'center_x': 0.5,'center_y': 0.8}
+            size_hint_x: None
+            size_hint_y: None
+            size: .2, .1
+
+            on_release:
+
+                app.root.current = 'start'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+
+            text: "MODE"
+            font_size: 24
+            pos_hint: {'center_x': 0.5,'center_y': 0.6}
+            size_hint_x: None
+            size_hint_y: None
+            size: .2, .1
+
+            on_release:
+
+                app.root.current = 'mode'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+
+            text: "GAME SETTINGS"
+            font_size: 24
+            pos_hint: {'center_x': 0.5,'center_y': 0.4}
+            size_hint_x: None
+            size_hint_y: None
+            size: .2, .1
+
+            on_release:
+
+                app.root.current = 'gamesettings'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+
+            text: "Player Stats"
+            font_size: 24
+            pos_hint: {'center_x': 0.5,'center_y': 0.2}
+            size_hint_x: None
+            size_hint_y: None
+            size: .2, .1
+
+            on_release:
+
+                app.root.current = 'playerstats'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+            text: "EXIT"
+            font_size: 24
+            size_hint_x: None
+            size_hint_y: None
+            size: .2, .1
+            pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+            on_release:
+
+                app.root.ask_confirmation()
+
+<W2>
+
+    MDToolbar:
+
+        title: 'Quiz'
+        pos_hint: {'top': 1}
+        left_action_items: [["keyboard-backspace", lambda x: app.root.back()]]
+        right_action_items: [["dots-vertical"]]
+
+    MDBoxLayout:
+
+        orientation: 'vertical'
+        adaptive_height: True
+
+        spacing: '20dp'
+        padding: '40dp'
+
+        pos_hint: {'top': 0.9}
+
+        MDLabel:
+
+            text: 'This is Start screen'
+
+        MDRoundFlatButton:
+
+            text: "Back To Menu"
+            font_size: 24
+            pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+            on_release:
+
+                app.root.current = 'screen1'
+                app.root.transition.direction = 'right'
+
+        MDFloatingActionButtonSpeedDial:
+
+            root_button_anim: True
+            data: root.data
+            callback: root.callback
+
+
+<W3>
+
+    MDToolbar:
+
+        title: 'Mode'
+        pos_hint: {'top': 1}
+        left_action_items: [["keyboard-backspace", lambda x: app.root.back()]]
+        right_action_items: [["dots-vertical"]]
+
+    MDBoxLayout:
+
+        orientation: 'vertical'
+        adaptive_height: True
+
+        spacing: '20dp'
+        padding: '40dp'
+
+        pos_hint: {'top': 0.9}
+
+        MDLabel:
+
+            text: 'This is Mode Screen'
+
+        MDRoundFlatButton:
+
+            text: "Back To Menu"
+            font_size: 24
+            pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+            on_release:
+
+                app.root.current = 'screen1'
+                app.root.transition.direction = 'right'
+
+<W4>
+
+    MDToolbar:
+
+        title: 'Game Settings'
+        pos_hint: {'top': 1}
+        left_action_items: [["keyboard-backspace", lambda x: app.root.back()]]
+        right_action_items: [["dots-vertical"]]
+
+    MDBoxLayout:
+
+        orientation: 'vertical'
+        adaptive_height: True
+
+        spacing: '20dp'
+        padding: '40dp'
+
+        pos_hint: {'top': 0.9}
+
+        MDGridLayout:
+            cols: 2
+            row_default_height: '50dp'
+            row_force_default: True
+            spacing: 30, 30
+            padding: 80 ,80
+            pos_hint: {'center_x': 0.5, 'bottom': .9}
+
+
+            MDLabel:
+                text: "Dark Mode"
+                font_size: 18
+
+            MDSwitch:
+                id: s
+                active: False
+                on_active:
+                    if s.active: app.darkmode('on')
+                    else: app.darkmode('off')
+
+<W5>
+
+    MDToolbar:
+
+        title: 'Player Stats'
+        pos_hint: {'top': 1}
+        left_action_items: [["keyboard-backspace", lambda x: app.root.back()]]
+        right_action_items: [["dots-vertical"]]
+
+    MDBoxLayout:
+
+        orientation: 'vertical'
+        adaptive_height: True
+
+        spacing: '20dp'
+        padding: '40dp'
+
+        pos_hint: {'top': 0.9}
+
+        MDLabel:
+
+            text: 'This is Player Settings Screen'
+
+        MDRoundFlatButton:
+
+            text: "Back"
+            font_size: 24
+            pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+            on_release:
+
+                app.root.current = 'screen1'
+                app.root.transition.direction = 'right'
+
+<W6>
+
+    MDToolbar:
+
+        title: 'Player Lists'
+        pos_hint: {'top': 1}
+        left_action_items: [["keyboard-backspace", lambda x: app.root.back()]]
+        right_action_items: [["dots-vertical"]]
+
+    MDBoxLayout:
+
+        id: igig
+
+        orientation: 'vertical'
+        adaptive_height: True
+
+        spacing: 20
+        pos_hint: {'top': 0.9}
+        padding: 1
+
+        MDProgressBar:
+
+            id: p
+            type: 'determinate'
+            pos_hint: {'bottom': 1}
+            color: 1,0,0,1
+
+        MDGridLayout:
+            cols: 2
+            row_default_height: '48dp'
+            row_force_default: True
+            spacing: 30, 30
+            padding: 30 ,30
+            pos_hint: {'center_x': 0.5, 'bottom': .9}
+
+            MDRoundFlatButton:
+                text: 'New Player Profile'
+                font_size: 18
+                pos_hint: {'bottom': 0.9}
+                on_press:
+                    app.root.current = 'login'
+                    app.root.transition.direction = 'left'
+
+            MDRoundFlatButton:
+                id: edit_player
+                text: "Edit Player Profile"
+                font_size: 18
+                pos_hint: {'bottom': 0.9}
+                disabled: True
+                on_release:
+                    root.show_table()
+
+<W7>
+
+    MDToolbar:
+
+        title: 'New Player Profile'
+        pos_hint: {'top': 1}
+        left_action_items: [["keyboard-backspace", lambda x: app.root.lol()]]
+        right_action_items: [["dots-vertical"]]
+
+    MDBoxLayout:
+
+        orientation: 'vertical'
+        adaptive_height: True
+
+        spacing: 20
+
+        pos_hint: {'top': 0.9}
+        padding: 5
+
+        MDProgressBar:
+
+            id: l
+            type: 'determinate'
+            pos_hint: {'bottom': 1}
+            color: 0,1,0,1
+
+        MDCard:
+
+            size_hint: None, None
+            size: 500, 400
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            elevation: 20
+            padding: 20
+            spacing: 20
+            orientation: 'vertical'
+
+
+            MDLabel:
+
+                text: 'Welcome'
+                font_size: 24
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+
+            MDTextFieldRound:
+
+                id: user
+
+                hint_text: "Player Name"
+                icon_right: 'account'
+
+                size_hint_x: None
+                width: 200
+                font_size: 18
+
+                pos_hint: {'center_x': 0.5}
+
+                normal_color: app.theme_cls.primary_dark
+                color_active: 1,0,0,
+
+            MDTextFieldRound:
+
+                id: password
+
+                hint_text: "Password"
+                icon_right: 'eye-off'
+
+                size_hint_x: None
+                width: 200
+                font_size: 18
+
+                pos_hint: {'center_x': 0.5}
+
+                normal_color: app.theme_cls.primary_dark
+                color_active: 1,0,0,1
+
+                password: True
+
+            MDRoundFlatButton:
+
+                text: 'CREATE'
+
+                font_size: 18
+                pos_hint: {'center_x': 0.5}
+                on_press: root.start()
+
+            MDRoundFlatButton:
+
+                text: 'Back'
+
+                font_size: 18
+                pos_hint: {'center_x': 0.5}
+                on_press:
+
+                    app.root.current = 'playerstats'
+                    app.root.transition.direction = 'right'
+
+            Widget:
+
+                size_hint_y: None
+                height: 20
